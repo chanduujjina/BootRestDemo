@@ -31,4 +31,17 @@ HttpStatus code:
 500 ->Internal server error
 
 
+1.Swager implementation:
+to document the resources
+
+Actuator health:
+http://localhost:8090/bootRest/actuator/health
+
+swager UI url:
+http://localhost:8090/bootRest/swagger-ui.html
+
+MockServices
+
+
+
 
