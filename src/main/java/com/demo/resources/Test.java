@@ -2,6 +2,11 @@ package com.demo.resources;
 
 public class Test {
 	
+	public Test() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
