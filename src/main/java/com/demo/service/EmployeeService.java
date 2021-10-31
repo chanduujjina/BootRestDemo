@@ -23,6 +23,11 @@ public class EmployeeService {
 		return null;
 	}
 	
+	/**
+	 * @param name
+	 * @return
+	 * 
+	 */
 	public List<Employee> getEmployeesByName(String name) {
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
 		return employeeList.stream().filter(emp->emp.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
@@ -39,7 +44,7 @@ public class EmployeeService {
 	/**
 	 * @param employee
 	 * @return
-	 * purpose of this method to dave employee data
+	 * purpose of this method to save employee data
 	 */
 	public List<Employee> saveEmployee(Employee employee){
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
