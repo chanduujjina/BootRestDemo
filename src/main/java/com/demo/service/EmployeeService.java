@@ -26,7 +26,7 @@ public class EmployeeService {
 	/**
 	 * @param name
 	 * @return
-	 * 
+      * purpose of this method to fetch all employee names
 	 */
 	public List<Employee> getEmployeesByName(String name) {
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
@@ -44,8 +44,8 @@ public class EmployeeService {
 	/**
 	 * @param employee
 	 * @return
-	 * purpose of this method to save employee data
-	 */
+     * purpose of this method to save employee data
+     * */
 	public List<Employee> saveEmployee(Employee employee){
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
 		employeeList.add(employee);
