@@ -2,11 +2,13 @@ package com.demo.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.demo.dto.Employee;
+import com.demo.exception.EmployeeNotFoundException;
 
 @Service
 public class EmployeeService {
@@ -34,18 +36,72 @@ public class EmployeeService {
 		return employeeList;
 	}
 	
-	public List<Employee> updateEmployee(Employee employee,int id){
+	public List<Employee> updateEmployee(Employee employee,int id) throws EmployeeNotFoundException{
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
-		employeeList.stream().forEach(emp->{
-			if(emp.getId()==id) {
-				emp.setSalary(employee.getSalary());
-			}
-		});
+	
+		//verify whether the record prtesent in mockservice or not
+		Optional<Employee> optionEmployee =employeeList.stream().filter(emp->emp.getId()==id).findAny();
 		
+		if(optionEmployee.isPresent()) {
+			Employee updtemployee =	optionEmployee.get();
+			if(employee.getSalary() != 0) {
+				updtemployee.setSalary(employee.getSalary());
+				}
+				if(employee.getName() != null) {
+					updtemployee.setName(employee.getName());	
+				}
+				if(employee.getDeptName() != null) {
+					updtemployee.setDeptName(employee.getDeptName());	
+				}
+				if(employee.getGender() != null) {
+					updtemployee.setGender(employee.getGender());	
+				}
+				return employeeList;
+		}
+		
+		throw new EmployeeNotFoundException("No Employee found to update");
+		
+	}
+	
+	public List<Employee> saveOrupdateEmployee(Employee employee,int id){
+		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
+		//verify whether the record prtesent in mockservice or not
+		Optional<Employee> optionEmployee =employeeList.stream().filter(emp->emp.getId()==id).findAny();
+		if(optionEmployee.isPresent()) {
+			Employee updtemployee =	optionEmployee.get();
+			if(employee.getSalary() != 0) {
+				updtemployee.setSalary(employee.getSalary());
+				}
+				if(employee.getName() != null) {
+					updtemployee.setName(employee.getName());	
+				}
+				if(employee.getDeptName() != null) {
+					updtemployee.setDeptName(employee.getDeptName());	
+				}
+				if(employee.getGender() != null) {
+					updtemployee.setGender(employee.getGender());	
+				}
+		}
+		else {
+			employeeList.add(employee);
+		}
 		
 		return employeeList;
 	}
 	
+	
+	public List<Employee> deleteEmployee(int id) throws EmployeeNotFoundException {
+		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
+		Optional<Employee> optionEmployee =employeeList.stream().filter(emp->emp.getId()==id).findAny();
+		
+		if(optionEmployee.isPresent()) {
+			Employee employee = optionEmployee.get();
+			employeeList.remove(employee);
+			return employeeList;
+		}
+		
+		throw new EmployeeNotFoundException("No employee found to delete");
+	}
 	public List<Employee> getEmployees(){
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
 		return employeeList;

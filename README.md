@@ -42,6 +42,14 @@ http://localhost:8090/bootRest/swagger-ui.html
 
 MockServices
 
+1.How to handle XML as input payload
+2.Rest api other basics
+
+---------------------------------------------
+
+Springboot data jpa with mysql
+
+
 
 
 
