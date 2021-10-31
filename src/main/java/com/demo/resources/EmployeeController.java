@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.dto.Employee;
@@ -45,6 +46,15 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(HttpStatus.NO_CONTENT);
 	}
 	
+	
+	@GetMapping("/empByName")
+	public ResponseEntity getEmployeesByName(@RequestParam ("name") String name) {
+		List<Employee> employeeList = employeeService.getEmployeesByName(name);
+		if(employeeList.size()>0) {
+		return 	new ResponseEntity(employeeList,HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 	@GetMapping("/names")
 	public ResponseEntity getEmployeeNames() {
 		List<String> nameList = employeeService.getEmployeeNames();
