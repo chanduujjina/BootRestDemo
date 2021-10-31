@@ -23,6 +23,12 @@ public class EmployeeService {
 		return null;
 	}
 	
+	public List<Employee> getEmployeesByName(String name) {
+		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
+		return employeeList.stream().filter(emp->emp.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
+		
+	}
+	
 	public List<String> getEmployeeNames() {
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
 		List<String> nameList = employeeList.stream().map(Employee::getName).collect(Collectors.toList());
