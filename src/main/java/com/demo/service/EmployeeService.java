@@ -23,6 +23,11 @@ public class EmployeeService {
 		return null;
 	}
 	
+	/**
+	 * @param name
+	 * @return
+	 * purpose of this method to fetch all employee names
+	 */
 	public List<Employee> getEmployeesByName(String name) {
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
 		return employeeList.stream().filter(emp->emp.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
