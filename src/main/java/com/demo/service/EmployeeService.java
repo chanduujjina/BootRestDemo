@@ -26,7 +26,7 @@ public class EmployeeService {
 	/**
 	 * @param name
 	 * @return
-	 * 
+      * purpose of this method to fetch all employee names
 	 */
 	public List<Employee> getEmployeesByName(String name) {
 		List<Employee> employeeList = MockEmployeeService.getEmployeeList();
